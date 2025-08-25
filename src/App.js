@@ -1,0 +1,24 @@
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './Login';      // Make sure this import is correct
+import Dashboard from './Dashboard'; // Make sure this import is correct
+
+function App() {
+    return (
+
+        <BrowserRouter>
+            <Routes>
+                {/* This tells React to redirect the base URL ("/") to "/login" */}
+                <Route path="/" element={<Navigate to="/login" />} />
+
+                {/* This tells React to show your Login component at the "/login" URL */}
+                <Route path="/login" element={<Login />} />
+
+                {/* This tells React to show the Dashboard at the "/dashboard" URL */}
+                <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+        </BrowserRouter>
+    );
+}
+
+export default App;

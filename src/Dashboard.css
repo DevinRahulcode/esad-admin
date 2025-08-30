@@ -26,6 +26,7 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 2rem;
+    color: #ffffff;
 }
 
 .sidebar-nav ul {
@@ -40,28 +41,18 @@ body {
     font-size: 1.125rem;
     border-radius: 6px;
     text-decoration: none;
-    color: white;
+    color: #d1d5db; /* Light gray for nav items */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+    background-color: #374151; /* Hover effect */
+    color: #ffffff;
 }
 
 .nav-item.active {
     background-color: #2563eb; /* Blue for active item */
-}
-
-.sub-nav {
-    margin-top: 8px;
-    margin-left: 16px;
-}
-
-.nav-sub-item {
-    display: block;
-    padding: 6px 8px;
-    color: #d1d5db; /* Lighter gray for sub-items */
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.nav-sub-item:hover {
-    background-color: #374151; /* Hover effect */
+    color: #ffffff;
 }
 
 /* Main Content Styles */
@@ -124,7 +115,8 @@ body {
     border-collapse: collapse;
 }
 
-.employee-table th, .employee-table td {
+.employee-table th,
+.employee-table td {
     padding: 16px;
 }
 
@@ -134,4 +126,15 @@ body {
 
 .employee-table tbody tr:nth-child(even) {
     background-color: #374151; /* Alternating row color */
+}
+
+/* Status Message Styles */
+.status-message {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 20px;
+}
+
+.status-message.error {
+    color: #f87171; /* Red for error messages */
 }

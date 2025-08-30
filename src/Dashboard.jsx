@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import './Dashboard.css';
 
 function Dashboard() {
     // --- STATE MANAGEMENT ---
     const [employees, setEmployees] = useState([]);
-    const [loading, setLoading] = useState(true); // New state for loading
-    const [error, setError] = useState(null);     // New state for errors
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     // --- DATA FETCHING ---
@@ -15,25 +15,22 @@ function Dashboard() {
         const fetchEmployees = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/api/employees/getall', {
-                    withCredentials: true
+                    withCredentials: true,
                 });
 
                 if (Array.isArray(response.data)) {
                     setEmployees(response.data);
                 } else {
-                    // This case handles unexpected, non-array responses
-                    throw new Error("Data received from server was not in the expected format.");
+                    throw new Error('Data received from server was not in the expected format.');
                 }
             } catch (err) {
-                console.error("There was an error fetching the employee data:", err);
+                console.error('There was an error fetching the employee data:', err);
                 setError('Failed to load employee data. Please try again later.');
 
                 if (err.response && (err.response.status === 401 || err.response.status === 403)) {
-                    // If unauthorized, redirect to login
                     navigate('/login');
                 }
             } finally {
-                // This will run after the try or catch block
                 setLoading(false);
             }
         };
@@ -44,16 +41,13 @@ function Dashboard() {
     // --- LOGOUT FUNCTIONALITY ---
     const handleLogout = async () => {
         try {
-            // Send a POST request to the backend's logout endpoint
             await axios.post('http://localhost:8080/api/auth/logout', {}, {
-                withCredentials: true
+                withCredentials: true,
             });
-            // On success, redirect to the login page
             navigate('/login');
         } catch (err) {
-            console.error("Logout failed:", err);
-            // Optionally, show an error message to the user
-            alert("Logout failed. Please try again.");
+            console.error('Logout failed:', err);
+            alert('Logout failed. Please try again.');
         }
     };
 
@@ -101,6 +95,48 @@ function Dashboard() {
 
     return (
         <div className="dashboard-container">
+            {/* Sidebar */}
+            <aside className="sidebar">
+                <div className="logo">HR Management</div>
+                <nav className="sidebar-nav">
+                    <ul>
+                        <li>
+                            <NavLink
+                                to="/dashboard"
+                                className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                            >
+                                Dashboard
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/Register"
+                                className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                            >
+                                Register Employee
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/attendance"
+                                className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                            >
+                                Attendance
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/leave-request"
+                                className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                            >
+                                Leave Request
+                            </NavLink>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            {/* Main Content */}
             <main className="main-content">
                 <header className="header">
                     <h2 className="header-title">Welcome to HR Management System</h2>

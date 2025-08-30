@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Login';      // Make sure this import is correct
-import Dashboard from './Dashboard'; // Make sure this import is correct
+import Dashboard from './Dashboard';
+import Register from "./Register";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
 
                 {/* This tells React to show the Dashboard at the "/dashboard" URL */}
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </BrowserRouter>
     );

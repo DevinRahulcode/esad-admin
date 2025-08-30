@@ -1,0 +1,117 @@
+/* Register Container */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #111827; /* Matches Dashboard dark background */
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Form Container */
+.register-form-container {
+    background-color: #1f2937; /* Darker background like Dashboard sidebar */
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Form Header */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.form-title {
+    font-size: 1.875rem;
+    font-weight: bold;
+}
+
+.view-employees-button {
+    padding: 8px 16px;
+    background-color: #2563eb; /* Blue to match Dashboard active nav */
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.view-employees-button:hover {
+    background-color: #1d4ed8; /* Darker blue on hover */
+}
+
+/* Form Styles */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #374151; /* Matches Dashboard table borders */
+    border-radius: 6px;
+    background-color: #374151; /* Matches Dashboard table row color */
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2563eb; /* Blue focus border */
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.form-group input.input-error {
+    border-color: #f87171; /* Red for error */
+}
+
+.error-message {
+    color: #f87171; /* Red for error messages */
+    font-size: 0.875rem;
+    margin-top: 4px;
+}
+
+.error-message.submit-error {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.submit-button {
+    padding: 12px;
+    background-color: #2563eb; /* Blue to match Dashboard */
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #1d4ed8; /* Darker blue on hover */
+}
+
+.submit-button:disabled {
+    background-color: #6b7280; /* Gray when disabled */
+    cursor: not-allowed;
+}

@@ -1,117 +1,427 @@
 /* Register Container */
 .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #111827; /* Matches Dashboard dark background */
-    color: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0f1c, #1a202c, #2d3748);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  color: #f7fafc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(255, 119, 198, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Form Container */
 .register-form-container {
-    background-color: #1f2937; /* Darker background like Dashboard sidebar */
-    padding: 32px;
-    border-radius: 8px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
+  background: rgba(26, 32, 44, 0.95);
+  backdrop-filter: blur(25px);
+  padding: 3rem 2.5rem;
+  border-radius: 24px;
+  box-shadow: 
+    0 32px 64px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  width: 100%;
+  max-width: 550px;
+  border: 1px solid rgba(237, 242, 247, 0.08);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.register-form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.05) 0%, 
+    transparent 50%, 
+    rgba(168, 85, 247, 0.05) 100%);
+  pointer-events: none;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Form Header */
 .form-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .form-title {
-    font-size: 1.875rem;
-    font-weight: bold;
+  font-size: 2.25rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f7fafc, #e2e8f0, #cbd5e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+  line-height: 1.2;
 }
 
 .view-employees-button {
-    padding: 8px 16px;
-    background-color: #2563eb; /* Blue to match Dashboard active nav */
-    font-weight: 600;
-    border-radius: 6px;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  font-weight: 700;
+  border-radius: 14px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.view-employees-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.view-employees-button:hover::before {
+  left: 100%;
 }
 
 .view-employees-button:hover {
-    background-color: #1d4ed8; /* Darker blue on hover */
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.4);
 }
 
 /* Form Styles */
 .register-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .form-group label {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #cbd5e0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.8rem;
 }
 
 .form-group input {
-    padding: 10px;
-    border: 1px solid #374151; /* Matches Dashboard table borders */
-    border-radius: 6px;
-    background-color: #374151; /* Matches Dashboard table row color */
-    color: #ffffff;
-    font-size: 1rem;
+  padding: 16px 20px;
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  border-radius: 16px;
+  background: rgba(45, 55, 72, 0.8);
+  backdrop-filter: blur(10px);
+  color: #f7fafc;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.form-group input::placeholder {
+  color: #64748b;
+  font-weight: 400;
 }
 
 .form-group input:focus {
-    outline: none;
-    border-color: #2563eb; /* Blue focus border */
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 
+    0 0 0 4px rgba(59, 130, 246, 0.15),
+    0 8px 25px rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+  background: rgba(45, 55, 72, 0.95);
 }
 
 .form-group input.input-error {
-    border-color: #f87171; /* Red for error */
+  border-color: #ef4444;
+  box-shadow: 
+    0 0 0 4px rgba(239, 68, 68, 0.15),
+    0 8px 25px rgba(239, 68, 68, 0.2);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
 
 .error-message {
-    color: #f87171; /* Red for error messages */
-    font-size: 0.875rem;
-    margin-top: 4px;
+  color: #fc8181;
+  font-size: 0.875rem;
+  margin-top: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: fadeIn 0.3s ease;
+}
+
+.error-message::before {
+  content: '⚠️';
+  font-size: 1rem;
 }
 
 .error-message.submit-error {
-    text-align: center;
-    margin-top: 16px;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 16px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .submit-button {
-    padding: 12px;
-    background-color: #2563eb; /* Blue to match Dashboard */
-    font-weight: 600;
-    border-radius: 6px;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  font-weight: 700;
+  border-radius: 16px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.submit-button:hover:not(:disabled)::before {
+  left: 100%;
 }
 
 .submit-button:hover:not(:disabled) {
-    background-color: #1d4ed8; /* Darker blue on hover */
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
 .submit-button:disabled {
-    background-color: #6b7280; /* Gray when disabled */
-    cursor: not-allowed;
+  background: linear-gradient(135deg, #64748b, #475569);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+.submit-button:disabled::before {
+  display: none;
+}
+
+/* Loading Animation for Submit Button */
+.submit-button:disabled::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Enhanced Focus States */
+.form-group input:focus + .form-group label,
+.form-group input:not(:placeholder-shown) + .form-group label {
+  color: #93c5fd;
+  transform: translateY(-2px);
+}
+
+/* Custom Scrollbar */
+.register-form-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.register-form-container::-webkit-scrollbar-track {
+  background: rgba(45, 55, 72, 0.5);
+  border-radius: 4px;
+}
+
+.register-form-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  border-radius: 4px;
+}
+
+.register-form-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2563eb, #7c3aed);
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .register-container {
+    padding: 16px;
+  }
+  
+  .register-form-container {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+  }
+  
+  .form-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .form-title {
+    font-size: 1.875rem;
+    order: 1;
+  }
+  
+  .view-employees-button {
+    order: 2;
+    width: 100%;
+    padding: 14px 24px;
+  }
+  
+  .form-group input {
+    padding: 14px 18px;
+    font-size: 0.95rem;
+  }
+  
+  .submit-button {
+    padding: 16px 24px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-form-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .form-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-group input {
+    padding: 12px 16px;
+  }
+  
+  .submit-button {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Hover Effects for Form Groups */
+.form-group:hover input:not(:focus) {
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Success State Animation */
+.form-group.success input {
+  border-color: #10b981;
+  box-shadow: 
+    0 0 0 4px rgba(16, 185, 129, 0.15),
+    0 8px 25px rgba(16, 185, 129, 0.2);
+}
+
+/* Input Field Glow Effect */
+.form-group input:focus {
+  position: relative;
+}
+
+.form-group input:focus::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0.7;
+  filter: blur(8px);
 }

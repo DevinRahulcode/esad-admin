@@ -1,66 +1,111 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
-import './login.css';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./login.css";
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const navigate = useNavigate(); // 2. Initialize the navigate function
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
 
-        const params = new URLSearchParams();
-        params.append('username', email);
-        params.append('password', password);
+    const params = new URLSearchParams();
+    params.append("username", email);
+    params.append("password", password);
 
-        try {
-            const response = await axios.post('http://localhost:8080/api/auth/login', params, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                withCredentials: true
-            });
-
-            if (response.status === 200) {
-                console.log('Login successful!');
-                // 3. Redirect to the dashboard on success
-                navigate('/dashboard');
-            }
-        } catch (err) {
-            console.error('Login failed:', err);
-            setError('Invalid email or password. Please try again.');
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        params,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          withCredentials: true,
         }
-    };
+      );
 
-    // ... keep the rest of your return JSX the same
-    return (
-        <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-            <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-xl p-8">
-                <h2 className="text-2xl font-bold text-white text-center mb-6">Admin Panel Login</h2>
+      if (response.status === 200) {
+        console.log("✅ Login successful!");
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      console.error("❌ Login failed:", err);
+      setError("Invalid email or password. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-                {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Your email and password inputs here */}
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-300">Email</label>
-                        <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="mt-1 w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email" />
-                    </div>
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-300">Password</label>
-                        <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="mt-1 w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" />
-                    </div>
-                    <button type="submit" className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                        Sign In
-                    </button>
-                </form>
-            </div>
+  return (
+    <div className="login-wrapper">
+      <div className="login-container">
+        <div className="login-header">
+          <div className="logo-container">
+            <div className="logo-icon">🔐</div>
+            <h1>Welcome Back</h1>
+            <p>Sign in to your admin panel</p>
+          </div>
         </div>
-    );
+
+        {error && (
+          <div className="error-message">
+            <span className="error-icon">⚠️</span>
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Enter your email"
+              disabled={isLoading}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Enter your password"
+              disabled={isLoading}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className={`login-button ${isLoading ? "loading" : ""}`}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="spinner"></span>
+                Signing in...
+              </>
+            ) : (
+              "Sign In"
+            )}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default Login;

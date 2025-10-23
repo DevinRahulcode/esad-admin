@@ -20,6 +20,7 @@ function Dashboard() {
         if (Array.isArray(response.data)) setEmployees(response.data);
         else throw new Error("Unexpected data format.");
       } catch (err) {
+        console.error(err);
         setError("Failed to load employee data.");
         if (err.response && (err.response.status === 401 || err.response.status === 403)) {
           navigate("/login");
@@ -34,9 +35,15 @@ function Dashboard() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8080/api/auth/logout", {}, { withCredentials: true });
+      await axios({
+        method: "post",
+        url: "http://localhost:8080/api/auth/logout",
+        withCredentials: true,
+        headers: { "Content-Type": "application/json" },
+      });
       navigate("/login");
-    } catch {
+    } catch (err) {
+      console.error("Logout failed:", err);
       alert("Logout failed. Please try again.");
     }
   };
@@ -51,7 +58,6 @@ function Dashboard() {
         <table className="employee-table">
           <thead>
             <tr>
-              <th></th>
               <th>Name</th>
               <th>Email</th>
               <th>NIC</th>
@@ -59,12 +65,12 @@ function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {employees.map((employee) => (
-              <tr key={employee.id}>
-                <td>{employee.name}</td>
-                <td>{employee.email}</td>
-                <td>{employee.nic}</td>
-                <td>{employee.gender}</td>
+            {employees.map((emp) => (
+              <tr key={emp.id}>
+                <td>{emp.name}</td>
+                <td>{emp.email}</td>
+                <td>{emp.nic}</td>
+                <td>{emp.gender}</td>
               </tr>
             ))}
           </tbody>
@@ -80,11 +86,21 @@ function Dashboard() {
         <div className="logo">🧩 HR Management</div>
         <nav className="sidebar-nav">
           <ul>
-            <li><NavLink to="/dashboard" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Dashboard</NavLink></li>
-            <li><NavLink to="/Register" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Register Employee</NavLink></li>
-            <li><NavLink to="/attendance" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Attendance</NavLink></li>
-            <li><NavLink to="/leave-request" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Leave Request</NavLink></li>
-            <li><NavLink to="/payslip" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Payslips</NavLink></li>
+            <li>
+              <NavLink to="/dashboard" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Dashboard</NavLink>
+            </li>
+            <li>
+              <NavLink to="/register" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Register Employee</NavLink>
+            </li>
+            <li>
+              <NavLink to="/attendance" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Attendance</NavLink>
+            </li>
+            <li>
+              <NavLink to="/leave-request" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Leave Request</NavLink>
+            </li>
+            <li>
+              <NavLink to="/payslip" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Payslips</NavLink>
+            </li>
           </ul>
         </nav>
       </aside>

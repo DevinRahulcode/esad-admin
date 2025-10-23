@@ -33,12 +33,11 @@ function Attendance() {
         <table className="employee-table">
           <thead>
             <tr>
-              <th></th>
               <th>Employee ID</th>
               <th>Name</th>
               <th>Type</th>
-    
               <th>Timestamp</th>
+              <th>Location</th> {/* Added Location column */}
             </tr>
           </thead>
           <tbody>
@@ -48,6 +47,7 @@ function Attendance() {
                 <td>{record.employeeName}</td>
                 <td>{record.type}</td>
                 <td>{new Date(record.timestamp).toLocaleString()}</td>
+                <td>{record.location || 'Not available'}</td> {/* Display location */}
               </tr>
             ))}
           </tbody>

@@ -10,7 +10,7 @@ function LeaveRequest() {
   useEffect(() => {
     const fetchLeaves = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/leave/all");
+        const response = await axios.get("http://localhost:4000/leave/all");
         setLeaves(response.data);
       } catch (err) {
         console.error(err);
@@ -26,7 +26,7 @@ function LeaveRequest() {
   const updateStatus = async (leaveId, status) => {
     try {
       await axios.put(
-        `http://localhost:8080/leave/updateStatus/${leaveId}?status=${status}`
+        `http://localhost:4000/leave/updateStatus/${leaveId}?status=${status}`
       );
       setLeaves((prev) =>
         prev.map((leave) =>

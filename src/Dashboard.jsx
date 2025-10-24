@@ -13,7 +13,7 @@ function Dashboard() {
     const fetchEmployees = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/employees/getall",
+          "http://localhost:4000/api/employees/getall",
           { withCredentials: true }
         );
 
@@ -34,7 +34,7 @@ function Dashboard() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8080/api/auth/logout", {}, { withCredentials: true });
+      await axios.post("http://localhost:4000/api/auth/logout", {}, { withCredentials: true });
       navigate("/login");
     } catch {
       alert("Logout failed. Please try again.");

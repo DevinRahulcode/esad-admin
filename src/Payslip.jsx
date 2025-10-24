@@ -11,7 +11,7 @@ function Payslip() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/employees/fetchall")
+      .get("http://localhost:4000/api/employees/fetchall")
       .then((res) => setEmployees(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -27,7 +27,7 @@ function Payslip() {
 
     axios
       .post(
-        `http://localhost:8080/api/payslips/upload/${selectedEmployee}`,
+        `http://localhost:4000/api/payslips/upload/${selectedEmployee}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

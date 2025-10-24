@@ -96,6 +96,10 @@ function Register() {
     };
 
     return (
+
+
+        
+
         <div className="register-container">
             <div className="register-form-container">
                 <div className="form-header">
@@ -103,7 +107,7 @@ function Register() {
                         onClick={handleViewEmployees}
                         className="view-employees-button"
                     >
-                        Return To Dashboard
+                        Return To Employees Table
                     </button>
                     <h2 className="form-title">Register New Employee</h2>
                 </div>

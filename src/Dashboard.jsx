@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink, Link } from "react-router-dom";
 import axios from "axios";
 import "./Dashboard.css";
 
@@ -83,11 +83,11 @@ function Dashboard() {
     <div className="dashboard-container">
       {/* Sidebar */}
       <aside className="sidebar">
-        <div className="logo">🧩 HR Management</div>
+        <Link to="/total-count" className="logo">🧩 HR Management</Link>
         <nav className="sidebar-nav">
           <ul>
             <li>
-              <NavLink to="/dashboard" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Dashboard</NavLink>
+              <NavLink to="/dashboard" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Employees</NavLink>
             </li>
             <li>
               <NavLink to="/register" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>Register Employee</NavLink>

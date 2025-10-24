@@ -7,6 +7,7 @@ import Attendance from './Attendance';
 
 import LeaveRequest from './LeaveRequest';
 import Payslip from './Payslip';
+import TotalCount from './TotalCount';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
 
                 {/* This tells React to show the Dashboard at the "/dashboard" URL */}
+                <Route path="/total-count" element={<TotalCount />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/attendance" element={<Attendance />} />

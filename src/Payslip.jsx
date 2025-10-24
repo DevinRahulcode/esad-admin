@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import "./Payslip.css";
 
@@ -11,7 +11,7 @@ function Payslip() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/employees/fetchall")
+      .get("http://localhost:8080/api/employees/getall")
       .then((res) => setEmployees(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -41,7 +41,7 @@ function Payslip() {
     <div className="dashboard-container">
       {/* Sidebar */}
       <aside className="sidebar">
-        <div className="logo">🧩 HR Management</div>
+       <Link to="/total-count" className="logo">🧩 HR Management</Link>
         <nav className="sidebar-nav">
           <ul>
             <li>
@@ -51,7 +51,7 @@ function Payslip() {
                   `nav-item ${isActive ? "active" : ""}`
                 }
               >
-                Dashboard
+                Employees
               </NavLink>
             </li>
             <li>

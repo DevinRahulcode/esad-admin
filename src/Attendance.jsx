@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css'; // reuse your existing CSS
+import { Link } from 'react-router-dom';
 
 function Attendance() {
   const [attendanceRecords, setAttendanceRecords] = useState([]);
@@ -60,10 +61,10 @@ function Attendance() {
     <div className="dashboard-container">
       {/* Sidebar */}
       <aside className="sidebar">
-        <div className="logo">🧩 HR Management</div>
+        <Link to="/total-count" className="logo">🧩 HR Management</Link>
         <nav className="sidebar-nav">
           <ul>
-            <li><a href="/dashboard" className="nav-item">Dashboard</a></li>
+            <li><a href="/dashboard" className="nav-item">Employees</a></li>
             <li><a href="/register" className="nav-item">Register Employee</a></li>
             <li><a href="/attendance" className="nav-item active">Attendance</a></li>
             <li><a href="/leave-request" className="nav-item">Leave Request</a></li>

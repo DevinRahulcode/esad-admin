@@ -163,6 +163,40 @@ body {
   z-index: 2;
 }
 
+
+.approve-btn {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.approve-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
+}
+
+
+.reject-btn {
+  background: linear-gradient(135deg, red, pink);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reject-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
@@ -191,3 +225,5 @@ body {
 .status-message.error {
   color: #fc8181;
 }
+
+

@@ -33,7 +33,7 @@ function Login() {
 
       if (response.status === 200) {
         console.log("✅ Login successful:", response.data);
-        navigate("/dashboard");
+        navigate("/total-count");
       }
     } catch (err) {
       console.error("❌ Login failed:", err);
